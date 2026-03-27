@@ -1,0 +1,13 @@
+<%= link_to 'New Item', new_item_path %>
+
+<h1>Items List</h1>
+
+<ul>
+  <% @items.each do |item| %>
+    <li>
+      <strong><%= item.title %></strong>:
+      <%= item.description %> -
+      ¥<%= item.price %> (在庫: <%= item.stock %>)
+    </li>
+  <% end %>
+</ul>
