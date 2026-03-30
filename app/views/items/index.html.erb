@@ -1,13 +1,25 @@
-<%= link_to 'New Item', new_item_path %>
+<h1>あなたの作品一覧</h1>
 
-<h1>Items List</h1>
+<%= link_to '＋ 作品を登録', new_item_path, class: "button" %>
 
-<ul>
-  <% @items.each do |item| %>
-    <li>
-      <strong><%= item.title %></strong>:
-      <%= item.description %> -
-      ¥<%= item.price %> (在庫: <%= item.stock %>)
-    </li>
-  <% end %>
-</ul>
+<% if @items.any? %>
+  <div class="card-container">
+    <% @items.each do |item| %>
+      <div class="card">
+        <% if item.image.attached? %>
+          <%= image_tag item.image, class: "card-image" %>
+        <% end %>
+        <h2>
+          <%= link_to item.title, item_path(item) %>
+        </h2>
+        <p class="description"><%= item.description %></p>
+        <div class="card-footer">
+          <p class="price">¥<%= item.price %></p>
+          <p class="stock">在庫数：<%= item.stock %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="empty-message">まだ作品が登録されていません</p>
+<% end %>
