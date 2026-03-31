@@ -1,53 +1,82 @@
 <!-- app/views/items/new.html.erb -->
-<h1>作品を登録</h1>
+
+<!-- ボタン類はフォーム枠の外に配置 -->
+<div class="form-actions">
+  <%= link_to '作品一覧に戻る', items_path, class: "link-back" %>
+</div>
+
+<h1>作品を登録する</h1>
 
 <div class="form-and-preview">
-
-  <div class="form-card">
+  <!-- 入力フォーム -->
+  <div class="form-card form-section">
     <%= form_with model: @item, local: true, html: { multipart: true }, id: "item-form" do |f| %>
-
-      <div class="form-group">
-        <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title, class: "form-input", id: "item_title_input" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :description, "説明" %>
-        <%= f.text_area :description, class: "form-input form-textarea", id: "item_description_input" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :price, "価格" %>
-        <%= f.number_field :price, class: "form-input", id: "item_price_input" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :stock, "在庫数" %>
-        <%= f.number_field :stock, class: "form-input", id: "item_stock_input" %>
-      </div>
-
-      <div class="form-group">
+    <div class="form-group">
         <%= f.label :image, "メイン画像" %>
         <%= f.file_field :image, class: "form-input", id: "item_image_input" %>
-      </div>
+        <p class="form-guide">
+          <details class="accordion">
+            <summary class="accordion-title">
+              📸 画像のコツを見る
+            </summary>
 
-      <div class="actions">
-        <%= f.submit "登録する", class: "button" %>
-        <%= link_to '一覧に戻る', items_path, class: "link-back" %>
+          <div class="accordion-content">
+            <p>
+            ・明るい自然光で撮影しましょう<br>
+            ・背景は白や生成りなどシンプルに<br>
+            ・作品全体が見える構図にしましょう
+            </p>
+            <p>💡 メイン画像は一覧で最初に見られるため、印象を大きく左右します。</p>
+        </div>
+        </details>
+        <p id="image_feedback" class="image-feedback">画像を選択するとアドバイスが表示されます</p>
       </div>
-
+      <div class="form-group">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-input", id: "item_title_input", placeholder: "例：手編みのベビーベスト" %>
+        <p class="form-guide">作品の名前を入力してください。30文字以内が推奨です。</p>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, "説明" %>
+        <%= f.text_area :description, class: "form-input form-textarea", id: "item_description_input", placeholder: "例：\nサイズ60～70。\n赤ちゃんのお肌に優しいオーガニックヤーンで編みました。\nお出掛けの際に一着あると安心です。" %>
+        <p class="form-guide">素材やサイズ、使用シーンなどを詳しく書くと購入者に伝わりやすくなります。</p>
+      </div>
+      <div class="form-group">
+        <%= f.label :price, "価格" %>
+        <%= f.number_field :price, class: "form-input", min: 0, step: 1, id: "item_price_input", placeholder: "例：3000" %>
+        <p class="form-guide">希望の販売価格を入力してください。</p>
+      </div>
+      <div class="form-group">
+        <%= f.label :stock, "在庫数" %>
+        <%= f.number_field :stock, class: "form-input", min: 0, step: 1, id: "item_stock_input", placeholder:"例：1" %>
+        <p class="form-guide">現在の在庫数を入力してください。0も登録可能です。</p>
+      </div>
     <% end %>
   </div>
 
-  <!-- プレビュー用カード -->
-  <div class="item-preview-card" id="item_preview">
-    <img src="" class="card-image" id="preview_image" style="display:none;">
-    <h2 id="preview_title">タイトル</h2>
-    <p class="description" id="preview_description">説明文がここに表示されます</p>
-    <div class="card-footer">
-      <p class="price" id="preview_price">¥0</p>
-      <p class="stock" id="preview_stock">在庫数：0</p>
+  <!-- プレビュー -->
+  <div class="preview-section">
+    <p class="preview-guide">※ここは入力内容のプレビューです</p>
+    
+    <div class="item-preview-card">
+    <div class="image-preview-wrapper">
+  <img src="" class="card-image" id="preview_image" style="display:none;">
+
+  <div id="image_placeholder" class="image-placeholder">
+    画像がここに表示されます
+  </div>
+</div>
+      <img src="" class="card-image" id="preview_image" style="display:none;">
+      <h2 id="preview_title">タイトル</h2>
+      <p class="description" id="preview_description">説明文がここに表示されます</p>
+      <div class="card-footer">
+        <p class="price" id="preview_price">¥0</p>
+        <p class="stock" id="preview_stock">在庫数：0</p>
     </div>
   </div>
-
+  <div class="form-actions">
+  <%= form_with model: @item, local: true do |f| %>
+    <%= f.submit "登録する", class: "button" %>
+  <% end %>
+  </div>
 </div>
