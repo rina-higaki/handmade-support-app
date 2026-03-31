@@ -1,3 +1,4 @@
+<!-- app/views/items/index.html.erb -->
 <h1>あなたの作品一覧</h1>
 
 <%= link_to '＋ 作品を登録', new_item_path, class: "button" %>
@@ -5,19 +6,19 @@
 <% if @items.any? %>
   <div class="card-container">
     <% @items.each do |item| %>
-      <div class="card">
-        <% if item.image.attached? %>
-          <%= image_tag item.image, class: "card-image" %>
-        <% end %>
-        <h2>
-          <%= link_to item.title, item_path(item) %>
-        </h2>
-        <p class="description"><%= item.description %></p>
-        <div class="card-footer">
-          <p class="price">¥<%= item.price %></p>
-          <p class="stock">在庫数：<%= item.stock %></p>
+      <%= link_to item_path(item), class: "card-link" do %>
+        <div class="card">
+          <% if item.image.attached? %>
+            <%= image_tag item.image, class: "card-image" %>
+          <% end %>
+          <h2><%= item.title %></h2>
+          <p class="description"><%= item.description %></p>
+          <div class="card-footer">
+            <p class="price">¥<%= item.price %></p>
+            <p class="stock">在庫数：<%= item.stock %></p>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 <% else %>
