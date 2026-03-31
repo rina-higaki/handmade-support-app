@@ -1,21 +1,36 @@
-<div class="card detail-card">
-  <%# メイン画像 %>
-  <% if @item.image.attached? %>
-    <%= image_tag url_for(@item.image), class: "card-image" %>
-  <% end %>
+<!-- app/views/items/show.html.erb -->
+<div class="a">
+  <%= link_to '作品一覧に戻る', items_path, class: "link-back" %>
+</div>
 
-  <%# タイトル %>
-  <h2 class="card-title"><%= @item.title %></h2>
+<h2 class="card-title"><%= @item.title %></h2>
+<div class="detail-actions">
+    <%= link_to "編集", edit_item_path(@item), class: "button dummy" %>
 
-  <%# 説明文 %>
-  <p class="card-description"><%= @item.description %></p>
-
-  <%# 詳細情報（価格・在庫） %>
-  <div class="card-footer">
-    <p class="price">¥<%= @item.price %></p>
-    <p class="stock">在庫数：<%= @item.stock %></p>
+    <%= link_to "削除", item_path(@item),
+      data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+      class: "button dummy" %>
   </div>
 
-  <%# 戻るボタン %>
-  <%= link_to "一覧に戻る", items_path, class: "button back-button" %>
+<div class="detail-container">
+
+  <div class="detail card">
+
+    <%# メイン画像 %>
+    <% if @item.image.attached? %>
+      <%= image_tag @item.image, class: "card-image" %>
+    <% end %>
+
+    <%# タイトル %>
+    <h2 class="card-title"><%= @item.title %></h2>
+
+    <%# 説明文 %>
+    <p class="card-description"><%= @item.description %></p>
+
+    <%# 詳細情報 %>
+    <div class="card-footer">
+      <p class="price">¥<%= @item.price %></p>
+      <p class="stock">在庫数：<%= @item.stock %></p>
+    </div>
+  </div>
 </div>

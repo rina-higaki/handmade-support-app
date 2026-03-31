@@ -1,7 +1,7 @@
 <!-- app/views/items/new.html.erb -->
 
 <!-- ボタン類はフォーム枠の外に配置 -->
-<div class="form-actions">
+<div class="a">
   <%= link_to '作品一覧に戻る', items_path, class: "link-back" %>
 </div>
 
@@ -77,6 +77,9 @@
   <div class="form-actions">
   <%= form_with model: @item, local: true do |f| %>
     <%= f.submit "登録する", class: "button" %>
+    <button type="button" class="button dummy" id="draft_button">
+    下書き保存
+  </button>
   <% end %>
   </div>
 </div>
