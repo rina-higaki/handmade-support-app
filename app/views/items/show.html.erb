@@ -1,19 +1,20 @@
 <!-- app/views/items/show.html.erb -->
+
 <div class="a">
   <%= link_to '作品一覧に戻る', items_path, class: "link-back" %>
 </div>
 
+<%# 作品タイトル %>
 <h2 class="card-title"><%= @item.title %></h2>
+
+<%# ボタン領域（未実装 → ダミー化） %>
 <div class="detail-actions">
-    <%= link_to "編集", edit_item_path(@item), class: "button dummy" %>
+    <button type="button" class="button dummy">編集</button>
+    <button type="button" class="button dummy">削除</button>
+</div>
 
-    <%= link_to "削除", item_path(@item),
-      data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
-      class: "button dummy" %>
-  </div>
-
+<%# 詳細カード領域 %>
 <div class="detail-container">
-
   <div class="detail card">
 
     <%# メイン画像 %>
@@ -27,7 +28,7 @@
     <%# 説明文 %>
     <p class="card-description"><%= @item.description %></p>
 
-    <%# 詳細情報 %>
+    <%# 価格と在庫数 %>
     <div class="card-footer">
       <p class="price">¥<%= @item.price %></p>
       <p class="stock">在庫数：<%= @item.stock %></p>

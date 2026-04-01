@@ -1,4 +1,5 @@
 // app/javascript/application.js
+
 document.addEventListener('DOMContentLoaded', () => {
   const titleInput = document.getElementById('item_title_input');
   const descriptionInput = document.getElementById('item_description_input');
@@ -85,5 +86,29 @@ document.addEventListener('DOMContentLoaded', () => {
       placeholder.style.display = 'flex'; // プレースホルダー再表示
       feedback.textContent = "画像を選択するとアドバイスが表示されます";
     }
+  });
+});
+
+// ダミーボタン用
+document.addEventListener('DOMContentLoaded', () => {
+  // トースト要素を作成
+  let toast = document.createElement('div');
+  toast.className = 'toast-message';
+  document.body.appendChild(toast);
+
+  function showToast(message, duration = 2000) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, duration);
+  }
+
+  // dummy クラスをもつボタンにイベント追加
+  document.querySelectorAll('.dummy').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast("現在改修中です✨");
+    });
   });
 });

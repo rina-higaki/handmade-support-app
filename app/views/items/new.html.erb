@@ -74,12 +74,10 @@
         <p class="stock" id="preview_stock">在庫数：0</p>
     </div>
   </div>
+  
+  <%# ボタン領域（未実装 → ダミー化） %>
   <div class="form-actions">
-  <%= form_with model: @item, local: true do |f| %>
-    <%= f.submit "登録する", class: "button" %>
-    <button type="button" class="button dummy" id="draft_button">
-    下書き保存
-  </button>
-  <% end %>
+    <button type="button" class="button dummy">登録する</button>
+    <button type="button" class="button dummy">下書き保存</button>
   </div>
 </div>

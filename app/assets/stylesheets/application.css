@@ -277,13 +277,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-.form-actions {
-    display: flex;
-    justify-content: center;
-    margin: 20px auto 0;
-    width: 320px;
-}
-
 /* ===== 詳細ページ ===== */
 .item-detail-container {
     max-width: 600px;
@@ -318,4 +311,22 @@ h1 {
 .back-button {
     display: inline-block;
     margin-top: 20px;
+}
+
+.toast-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #865c0e71;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.toast-message.show {
+  opacity: 1;
 }
